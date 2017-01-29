@@ -1,0 +1,13 @@
+{
+    "require": {
+        "doctrine/orm": "*",
+        "doctrine/migrations": "v1.2.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Entity\\": "Entity/",
+            "Repository\\": "Repository/",
+            "App\\": "Source/"
+        }
+    }
+}
