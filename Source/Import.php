@@ -30,7 +30,7 @@ class Import
      */
     public function import()
     {
-        $repo = $this->em->getRepository(\Entity\Test::class);
+        $repo = $this->em->getRepository(\Entity\BookmarkTags::class);
         $repo->import();
         
         return NULL;
