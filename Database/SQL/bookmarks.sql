@@ -1,4 +1,5 @@
-PRAGMA foreign_keys = true;
+PRAGMA foreign_keys=1;
+PRAGMA encoding="UTF-8";
 
 CREATE TABLE IF NOT EXISTS bookmark(
     id         INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
@@ -8,12 +9,14 @@ CREATE TABLE IF NOT EXISTS bookmark(
     ,url       TEXT    NOT NULL
     ,UNIQUE(url)
 );
+
 CREATE TABLE IF NOT EXISTS tag(
     id           INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
     ,description TEXT    DEFAULT NULL
     ,name        TEXT    NOT NULL
     ,UNIQUE(name)
 );
+
 CREATE TABLE IF NOT EXISTS bookmark_tags(
     bookmark_id INTEGER NOT NULL
     ,tag_id     INTEGER NOT NULL
@@ -31,21 +34,11 @@ INSERT INTO bookmark (dateAdded,note,title,url) VALUES
 (
     (SELECT strftime('%s','now'))
     ,'Test'
-    ,'Fucking Google'
+    ,'Da Google'
     ,'http://google.com'
 );
-INSERT INTO bookmark (dateAdded,note,title,url) VALUES
-(
-    (SELECT strftime('%s','now'))
-    ,'Test'
-    ,'Fucking Google'
-    ,'http://google.com'
-);
-INSERT INTO tag (description,name) VALUES
-(
-    'Fucking Google, OK.'
-    ,'Google'
-);
+
+INSERT INTO tag (description,name) VALUES('Da Google, OK.', 'Google');
 */
 
 /*

@@ -3,18 +3,19 @@
 // Include Composer Autoload (relative to project root).
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
-use Doctrine\Common\Annotations\AnnotationRegistry;  
+//use Doctrine\Common\Annotations\AnnotationRegistry;
 
 require_once "../vendor/autoload.php";
 
-$paths = array(__DIR__.'/Entity/');
-$isDevMode = true;
+$paths = ['../Entity/'];
+$isDevMode = false;
 
 // the connection configuration
-$dbParams = array(
-	'driver' => 'pdo_sqlite',
-	'path' => __DIR__ . '/data.db'
-);
+$dbParams = [
+    'driver' => 'pdo_sqlite',
+    'path' => '../Database/data.sqlite',
+//    'charset' => 'UTF-8',
+];
 
 $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);
 $entityManager = EntityManager::create($dbParams, $config);
@@ -27,7 +28,10 @@ $config->setSQLLogger($logger);
 //AnnotationRegistry::registerAutoloadNamespace("MyProject\Annotations", ROOT.DS.'www');
 $db = $entityManager->getConnection();
 
-$helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
-//    'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($entityManager->getConnection()),
+$db->exec('PRAGMA foreign_keys = 1');
+$db->exec('PRAGMA encoding = "UTF-8"');
+
+$helperSet = new \Symfony\Component\Console\Helper\HelperSet([
+    //'db' => new \Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper($entityManager->getConnection()),
     'em' => new \Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper($entityManager)
-));
+]);
