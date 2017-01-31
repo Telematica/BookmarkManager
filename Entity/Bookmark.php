@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Bookmark
  *
  * @ORM\Table(name="bookmark")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Repository\BookmarkRepository")
  */
 class Bookmark
 {

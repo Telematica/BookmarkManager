@@ -28,11 +28,16 @@ class Import
      * 
      * @return NULL
      */
-    public function import()
+    public function import($urls)
     {
-        $repo = $this->em->getRepository(\Entity\BookmarkTags::class);
-        $repo->import();
+        $repo = $this->em->getRepository(\Entity\Bookmark::class);
         
-        return NULL;
+        try {
+            $return = $repo->import($urls);
+        } catch(\Exception $e) {
+            
+        }
+        
+        return $return;
     }
 }
